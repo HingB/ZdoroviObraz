@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input {
+            padding: 8px;
+            margin-bottom: 10px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h2>Авторизация</h2>
+    <form onsubmit="event.preventDefault(); checkAuth();">
+        <label for="login">Логин:</label><br>
+        <input type="text" id="login" required><br><br>
+        <label for="password">Пароль:</label><br>
+        <input type="password" id="password" required><br><br>
+        <button type="submit">Войти</button>
+    </form>
+
+    <script>
+        function checkAuth() {
+            const login = document.getElementById('login').value;
+            const password = document.getElementById('password').value;
+
+            // Проверка для пользователя
+            if (login === "user" && password === "123") {
+                alert("Вы вошли как Пользователь!");
+                window.location.href = "index.html"; // Перенаправление на страницу пользователя
+            }
+            // Проверка для администратора
+            else if (login === "admin" && password === "admin") {
+                alert("Вы вошли как Администратор!");
+                window.location.href = "admin.html"; // Перенаправление на страницу администратора
+            }
+            // Если данные неверны
+            else {
+                alert("Неверный логин или пароль!");
+            }
+        }
+    </script>
+</body>
+</html>

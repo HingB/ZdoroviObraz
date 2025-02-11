@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        textarea, input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Админ-панель</h1>
+    <form onsubmit="event.preventDefault(); saveContent();">
+        <label for="indexText">Текст на главной странице:</label><br>
+        <textarea id="indexText" placeholder="Введите текст для главной страницы..."></textarea><br>
+
+        <label for="aboutText">Текст на странице 'О здоровом образе жизни':</label><br>
+        <textarea id="aboutText" placeholder="Введите текст для страницы 'О здоровом образе жизни'..."></textarea><br>
+
+        <label for="familyText">Текст на странице 'Семейные ценности':</label><br>
+        <textarea id="familyText" placeholder="Введите текст для страницы 'Семейные ценности'..."></textarea><br>
+
+        <label for="preventionText">Текст на странице 'Профилактика':</label><br>
+        <textarea id="preventionText" placeholder="Введите текст для страницы 'Профилактика'..."></textarea><br>
+
+        <label for="indexImage">Ссылка на изображение для главной страницы:</label><br>
+        <input type="text" id="indexImage" placeholder="Введите ссылку на изображение..."><br>
+
+        <label for="aboutImage">Ссылка на изображение для страницы 'О здоровом образе жизни':</label><br>
+        <input type="text" id="aboutImage" placeholder="Введите ссылку на изображение..."><br>
+
+        <label for="familyImage">Ссылка на изображение для страницы 'Семейные ценности':</label><br>
+        <input type="text" id="familyImage" placeholder="Введите ссылку на изображение..."><br>
+
+        <label for="preventionImage">Ссылка на изображение для страницы 'Профилактика':</label><br>
+        <input type="text" id="preventionImage" placeholder="Введите ссылку на изображение..."><br>
+
+        <button type="submit">Сохранить изменения</button>
+    </form>
+
+    <script>
+        // Функция для сохранения контента в localStorage
+        function saveContent() {
+            const indexText = document.getElementById('indexText').value;
+            const aboutText = document.getElementById('aboutText').value;
+            const familyText = document.getElementById('familyText').value;
+            const preventionText = document.getElementById('preventionText').value;
+
+            const indexImage = document.getElementById('indexImage').value;
+            const aboutImage = document.getElementById('aboutImage').value;
+            const familyImage = document.getElementById('familyImage').value;
+            const preventionImage = document.getElementById('preventionImage').value;
+
+            // Сохраняем тексты
+            localStorage.setItem('indexText', indexText);
+            localStorage.setItem('aboutText', aboutText);
+            localStorage.setItem('familyText', familyText);
+            localStorage.setItem('preventionText', preventionText);
+
+            // Сохраняем ссылки на изображения
+            localStorage.setItem('indexImage', indexImage);
+            localStorage.setItem('aboutImage', aboutImage);
+            localStorage.setItem('familyImage', familyImage);
+            localStorage.setItem('preventionImage', preventionImage);
+
+            alert('Изменения сохранены!');
+        }
+
+        // Загрузка сохраненных данных при открытии админ-панели
+        window.onload = function() {
+            document.getElementById('indexText').value = localStorage.getItem('indexText') || '';
+            document.getElementById('aboutText').value = localStorage.getItem('aboutText') || '';
+            document.getElementById('familyText').value = localStorage.getItem('familyText') || '';
+            document.getElementById('preventionText').value = localStorage.getItem('preventionText') || '';
+
+            document.getElementById('indexImage').value = localStorage.getItem('indexImage') || '';
+            document.getElementById('aboutImage').value = localStorage.getItem('aboutImage') || '';
+            document.getElementById('familyImage').value = localStorage.getItem('familyImage') || '';
+            document.getElementById('preventionImage').value = localStorage.getItem('preventionImage') || '';
+        };
+    </script>
+</body>
+</html>
